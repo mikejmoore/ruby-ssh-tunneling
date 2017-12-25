@@ -20,12 +20,12 @@ def tunnel_through_bastion(params)
         verify_host_key: IGNORE_KNOWN_HOST_VALUE)
 
   gateway.open(params[:private_host_ip_address], private_host_ssh_port) do |gateway_port|
-    ssh_session = gateway.ssh(params[:private_host_ip_address], params[:ssh_user],
+    ssh = gateway.ssh(params[:private_host_ip_address], params[:ssh_user],
           key_data: params[:keys],
           port: private_host_ssh_port,
           keys_only: true,
           verify_host_key: IGNORE_KNOWN_HOST_VALUE)
-    yield(ssh_session)
+    yield(ssh)
   end
 end
 
